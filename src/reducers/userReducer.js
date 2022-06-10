@@ -1,12 +1,14 @@
 const initialState = {
-    name:null,
+    name:"rahul",
     age:0
 }
 
-const userReducer = (state = initialState,action)=>{
+export const userReducer = (state = initialState,action)=>{
     switch(action.type){
         case "CHANGENAME":
+            console.log(action.payload.name)
             return {...state,name:action.payload.name}
+        default:
+            return state;
     }
 }
-export default userReducer;
