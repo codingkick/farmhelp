@@ -1,6 +1,10 @@
 const initialState = {
-    name:"rahul",
-    age:0
+    name:"maiVKisaan",
+    age:0,
+    reviewAsFarmer:10,
+    reviewasConsumer:10,
+    dealsAsFarmer:0,
+    dealsasConsumer:0
 }
 
 export const userReducer = (state = initialState,action)=>{
