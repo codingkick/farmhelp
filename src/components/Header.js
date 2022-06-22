@@ -1,12 +1,18 @@
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import {Container,Row,Col,Button,Navbar,Nav,NavDropdown,Form,FormControl} from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 export const Header = () => {
+    const history = useHistory();
+    function signOut(){
+        console.log("outtt")
+    }
   return (
     <div>
         <Navbar bg="light" expand="lg">
         <Container fluid>
-            <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+            <Navbar.Brand href="#" onClick={()=>history.push("/farmerListing")}>Farmit</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -14,9 +20,10 @@ export const Header = () => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
             >
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Link</Nav.Link>
-                <NavDropdown title="Link" id="navbarScrollingDropdown">
+                <Nav.Link href="#" onClick={()=>history.push("consumerListing")}>Demands</Nav.Link>
+                <Nav.Link href="#" onClick={()=>history.push("profile")}>Profile</Nav.Link>
+                <Nav.Link href="#" onClick={signOut}>Signout</Nav.Link>
+                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -26,7 +33,7 @@ export const Header = () => {
                 </NavDropdown>
                 <Nav.Link href="#" disabled>
                 Link
-                </Nav.Link>
+                </Nav.Link> */}
             </Nav>
             <Form className="d-flex">
                 <FormControl

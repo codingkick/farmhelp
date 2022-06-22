@@ -6,6 +6,8 @@ import { Header } from './components/Header';
 import { FarmerListing } from './components/FarmerListing';
 import { Login } from './components/Login';
 import { BrowserRouter as Router,Route,Switch,withRouter } from 'react-router-dom';
+import { ConsumerListing } from './components/ConsumerListing';
+import { Profile } from './components/Profile';
 
 function App() {
   const myState1 = useSelector((state)=>state.userReducer);
@@ -23,9 +25,12 @@ function App() {
       {/* <Login></Login> */}
       <Router>
         <Switch>
-          <Route exact path="/uid" component={withRouter(Header)}>
+          <Route exact path="/farmerListing" component={FarmerListing}>
           </Route>
-          <Route exact path="/" component={withRouter(Login)}>
+          <Route exact path="/" component={Login}>
+          </Route>
+          <Route path="/consumerListing" component={ConsumerListing} exact></Route>
+          <Route path="/profile" component={Profile} exact>
           </Route>
         </Switch>
       </Router>

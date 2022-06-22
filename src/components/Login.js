@@ -9,6 +9,17 @@ export const Login = () => {
     const history = useHistory();
     const provider = new GoogleAuthProvider();
 
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          console.log("uid"+uid);
+          history.push("/farmerListing");
+        } else {
+
+            // popup();
+        }
+      });
+
         const popup = ()=>{
             signInWithPopup(auth, provider)
                     .then((result) => {
@@ -30,26 +41,13 @@ export const Login = () => {
                     });
 
         }
-      
-        useEffect(() => {
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                  const uid = user.uid;
-                  console.log("uid"+uid);
-                } else {
 
-                    popup();
-                }
-                history.push("/uid");
-              });
-              
-        }, [])
         
   return (
     <div>
         <img className="wave" src="https://i.postimg.cc/sDG8zyXM/wave.png"/>
-        <div className="container">
-        <div className="img">
+        <div className="containers">
+        <div className="imgs">
             <img src="https://svgshare.com/i/JcM.svg"/>
         </div>
         <div className="login-content">
@@ -73,7 +71,7 @@ export const Login = () => {
                 </div>
             </div>
             <a href="#">Forgot Password?</a>
-            <input type="submit" className="btn" value="Login" onClick={popup}/>
+            <input type="submit" className="btns" value="Login" onClick={popup}/>
             </form>
         </div>
         </div>

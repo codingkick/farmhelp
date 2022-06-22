@@ -2,6 +2,6 @@ import React from 'react'
 
 export const ConsumerListing = () => {
   return (
-    <div>ConsumerListing</div>
+    <div>ConsumerListing demand work in progress</div>
   )
 }

@@ -3,6 +3,7 @@ import { Container,Row,Col,Card } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { getDatabase, ref, onValue} from "firebase/database";
 import { useState,useEffect } from 'react';
+import { Header } from './Header';
 
 import app from '../firebase';
 export const FarmerListing = () => {
@@ -39,6 +40,7 @@ export const FarmerListing = () => {
         {
             return(
                 <div>
+                    <Header></Header>
                     <Container>
                         <Row>
                             {
@@ -46,9 +48,11 @@ export const FarmerListing = () => {
                                     console.log(requests[e].productName)
                                     return(
                                         <Col xs={12} md={4} style={styling}>
+                                            <br/>
+                                            <br/>
                                             <Card>
                                                 {/* <Card.Img variant="bottom" src="https://upload.wikimedia.org/wikipedia/commons/9/90/Hapus_Mango.jpg" style={{heigth:"2rem"}}/> */}
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Hapus_Mango.jpg" style={styling2}></img>
+                                                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Hapus_Mango.jpg" style={styling2}></img> */}
                                                 <Card.Body>
                                                 <Card.Title>{requests[e].productName}</Card.Title>
                                                 <Card.Text>
@@ -63,6 +67,7 @@ export const FarmerListing = () => {
                                                 </Card.Footer>
                                             </Card>
                                         </Col>
+                                        
                                     )
                                 })
                             }
