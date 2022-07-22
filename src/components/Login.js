@@ -4,23 +4,68 @@ import { getAuth, signInWithPopup, GoogleAuthProvider,onAuthStateChanged } from 
 import { useEffect } from 'react';
 import { BrowserRouter as Router,Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getDatabase, ref, onValue,set} from "firebase/database";
+import { putData } from '../actions';
+
+
 export const Login = () => {
     const auth = getAuth();
+    const db = getDatabase();
     const history = useHistory();
     const provider = new GoogleAuthProvider();
+    const dispatch = useDispatch();
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-          const uid = user.uid;
-          console.log("uid"+uid);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              const uid = user.uid;
+              console.log(uid);
+              const refr = ref(db, 'users/'+uid);
+            //   console.log(refr);
+              onValue(refr, (snapshot) => {
+                const data = snapshot.val();
+                if(data === null)
+                {
+                    set(refr,{
+                        name:"kachra",
+                        age:10,
+                        reviewAsFarmer:10,
+                        reviewasConsumer:10,
+                        dealsAsFarmer:10,
+                        dealsasConsumer:10
+                    })
+                    dispatch(putData(
+                        {
+                            name:"kachra",
+                            age:10,
+                            reviewAsFarmer:10,
+                            reviewasConsumer:10,
+                            dealsAsFarmer:10,
+                            dealsasConsumer:10
+                        }
+                    ))
+                }
+                else
+                dispatch(putData(data));
+            },{
+                onlyOnce : true
+            });
+
+              // ...
+            } else {
+              // User is signed out
+              // ...
+            }
+          });
           history.push("/farmerListing");
-        } else {
+    }, [])
+    
+    
 
-            // popup();
-        }
-      });
-
-        const popup = ()=>{
+        const popup = (e)=>{
+            e.preventDefault();
+            // console.log("hey");
             signInWithPopup(auth, provider)
                     .then((result) => {
                         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -51,7 +96,7 @@ export const Login = () => {
             <img src="https://svgshare.com/i/JcM.svg"/>
         </div>
         <div className="login-content">
-            <form>
+            <form onSubmit={popup}>
             <img src="https://svgshare.com/i/Jcf.svg"/>
             <h2 className="title">Welcome</h2>
             <div className="input-div one">
@@ -70,8 +115,8 @@ export const Login = () => {
                 <input type="password" className="input" placeholder="Password"/>
                 </div>
             </div>
-            <a href="#">Forgot Password?</a>
-            <input type="submit" className="btns" value="Login" onClick={popup}/>
+            <a>Forgot Password?</a>
+            <input type="submit" className="btns" value="Login"/>
             </form>
         </div>
         </div>

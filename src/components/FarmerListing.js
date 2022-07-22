@@ -11,7 +11,7 @@ export const FarmerListing = () => {
 
     const mystate = useSelector((state)=>state.userReducer)
     useEffect(() => {
-
+        console.log("hola",mystate.name)
         const db = getDatabase();
         const temp = ref(db,'farmerListing');
         onValue(temp,(snapshot)=>{

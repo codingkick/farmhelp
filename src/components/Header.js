@@ -1,12 +1,18 @@
-import { signOut } from 'firebase/auth';
+import { signOut,getAuth } from 'firebase/auth';
 import React from 'react'
 import {Container,Row,Col,Button,Navbar,Nav,NavDropdown,Form,FormControl} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 export const Header = () => {
     const history = useHistory();
-    function signOut(){
+    function signOutFunc(){
         console.log("outtt")
+        const auth = getAuth();
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        }).catch((error) => {
+        // An error happened.
+        });
     }
   return (
     <div>
@@ -22,7 +28,7 @@ export const Header = () => {
             >
                 <Nav.Link href="#" onClick={()=>history.push("consumerListing")}>Demands</Nav.Link>
                 <Nav.Link href="#" onClick={()=>history.push("profile")}>Profile</Nav.Link>
-                <Nav.Link href="#" onClick={signOut}>Signout</Nav.Link>
+                <Nav.Link href="#" onClick={signOutFunc}>Signout</Nav.Link>
                 {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>

@@ -7,3 +7,10 @@ export const changeName = (name) => {
         }
     }
 }
+export const putData = (data)=>{
+    console.log("receiving")
+    return{
+        type : "PUTDATA",
+        payload : data
+    }
+}
