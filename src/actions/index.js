@@ -14,3 +14,10 @@ export const putData = (data)=>{
         payload : data
     }
 }
+
+export const makeDefault = ()=>{
+    console.log("sign out default")
+    return{
+        type: "MAKEDEFAULT"
+    }
+}

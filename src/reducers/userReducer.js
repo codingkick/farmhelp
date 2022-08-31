@@ -23,6 +23,16 @@ export const userReducer = (state = initialState,action)=>{
                 dealsAsFarmer:action.payload.dealsAsFarmer,
                 dealsasConsumer:action.payload.dealsasConsumer
             }
+        case "MAKEDEFAULT":
+            return{
+                ...state,
+                name:"maiVKisaan",
+                age:0,
+                reviewAsFarmer:10,
+                reviewasConsumer:10,
+                dealsAsFarmer:0,
+                dealsasConsumer:0
+            }
         default:
             return state;
     }

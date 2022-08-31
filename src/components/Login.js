@@ -28,7 +28,7 @@ export const Login = () => {
                 if(data === null)
                 {
                     set(refr,{
-                        name:"kachra",
+                        name:"kacha",
                         age:10,
                         reviewAsFarmer:10,
                         reviewasConsumer:10,
@@ -37,7 +37,7 @@ export const Login = () => {
                     })
                     dispatch(putData(
                         {
-                            name:"kachra",
+                            name:"kacha",
                             age:10,
                             reviewAsFarmer:10,
                             reviewasConsumer:10,
@@ -51,14 +51,14 @@ export const Login = () => {
             },{
                 onlyOnce : true
             });
-
+            history.push("/farmerListing");
               // ...
             } else {
               // User is signed out
               // ...
             }
           });
-          history.push("/farmerListing");
+        //   history.push("/farmerListing");
     }, [])
     
     

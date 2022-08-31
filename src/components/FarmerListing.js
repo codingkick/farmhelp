@@ -45,7 +45,7 @@ export const FarmerListing = () => {
                         <Row>
                             {
                                 Object.keys(requests).map((e,ind)=>{
-                                    console.log(requests[e].productName)
+                                    // console.log(requests[e].productName)
                                     return(
                                         <Col xs={12} md={4} style={styling}>
                                             <br/>

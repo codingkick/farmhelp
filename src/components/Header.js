@@ -1,15 +1,20 @@
 import { signOut,getAuth } from 'firebase/auth';
 import React from 'react'
 import {Container,Row,Col,Button,Navbar,Nav,NavDropdown,Form,FormControl} from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { makeDefault } from '../actions';
 
 export const Header = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
     function signOutFunc(){
         console.log("outtt")
         const auth = getAuth();
         signOut(auth).then(() => {
         // Sign-out successful.
+        dispatch(makeDefault());
+        history.push("/");
         }).catch((error) => {
         // An error happened.
         });

@@ -1,13 +1,11 @@
 import './App.css';
-import {useSelector,useDispatch} from "react-redux";
-import { NameForm } from './components/NameForm';
-import { useState } from 'react';
-import { Header } from './components/Header';
+import {useSelector} from "react-redux";
 import { FarmerListing } from './components/FarmerListing';
 import { Login } from './components/Login';
-import { BrowserRouter as Router,Route,Switch,withRouter } from 'react-router-dom';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import { ConsumerListing } from './components/ConsumerListing';
 import { Profile } from './components/Profile';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   const myState1 = useSelector((state)=>state.userReducer);
@@ -25,12 +23,12 @@ function App() {
       {/* <Login></Login> */}
       <Router>
         <Switch>
-          <Route exact path="/farmerListing" component={FarmerListing}>
-          </Route>
+          {/* <Route exact path="/farmerListing" component={FarmerListing}>
+          </Route> */}
+          <PrivateRoute path="/farmerListing" component={FarmerListing} exact></PrivateRoute>
+          <PrivateRoute path="/consumerListing" component={ConsumerListing} exact></PrivateRoute>
+          <PrivateRoute path="/profile" component={Profile} exact></PrivateRoute>
           <Route exact path="/" component={Login}>
-          </Route>
-          <Route path="/consumerListing" component={ConsumerListing} exact></Route>
-          <Route path="/profile" component={Profile} exact>
           </Route>
         </Switch>
       </Router>
